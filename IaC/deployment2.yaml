@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8stimeservicewithhealthcheck2-deployment
+  labels:
+    app: k8stimeservicewithhealthcheck2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8stimeservicewithhealthcheck2
+  template:
+    metadata:
+      labels:
+        app: k8stimeservicewithhealthcheck2
+    spec:
+      containers:
+        - name: k8stimeservicewithhealthcheck2-container
+          image: k8stimeservicewithhealthcheck:v1 # Use the locally built image
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /HealthCheck # The same health check endpoint
+              port: 80
+            initialDelaySeconds: 5 # Start checking 5 seconds after the container starts
+            periodSeconds: 3 # Check every 3 seconds

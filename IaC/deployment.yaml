@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8stimeservicewithhealthcheck-deployment
+  labels:
+    app: k8stimeservicewithhealthcheck
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8stimeservicewithhealthcheck
+  template:
+    metadata:
+      labels:
+        app: k8stimeservicewithhealthcheck
+    spec:
+      containers:
+        - name: k8stimeservicewithhealthcheck-container
+          image: k8stimeservicewithhealthcheck:v1 # Use the locally built image
+          ports:
+            - containerPort: 80
+          livenessProbe: # Liveness probe configuration
+            httpGet:
+              path: /HealthCheck
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3 # Restart after 3 consecutive failed checks

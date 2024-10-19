@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8stimeservicewithhealthcheck3-deployment
+  labels:
+    app: k8stimeservicewithhealthcheck3
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8stimeservicewithhealthcheck3
+  template:
+    metadata:
+      labels:
+        app: k8stimeservicewithhealthcheck3
+    spec:
+      containers:
+        - name: k8stimeservicewithhealthcheck3-container
+          image: k8stimeservicewithhealthcheck:v1 # Use the locally built image
+          ports:
+            - containerPort: 80
+          livenessProbe: # Liveness probe configuration
+            httpGet:
+              path: /HealthCheck
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3 # Restart after 3 consecutive failed checks
+          readinessProbe:
+            httpGet:
+              path: /HealthCheck # The same health check endpoint
+              port: 80
+            initialDelaySeconds: 5 # Start checking 5 seconds after the container starts
+            periodSeconds: 1 # Check every 3 seconds
+            failureThreshold: 1 # Remove the Pod from service after the first failed check
