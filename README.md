@@ -41,4 +41,4 @@ LocalCSharpK8sAPI/
 
 ```
 
-More details <a href="https://readme.com/" target="_blank">here</a>
+More details <a href="https://jafreitas90.medium.com/health-checks-in-kubernetes-part-1-managing-traffic-flow-with-liveness-dc44b6136081" target="_blank">here</a>
