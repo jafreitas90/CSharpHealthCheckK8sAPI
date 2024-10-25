@@ -41,4 +41,9 @@ LocalCSharpK8sAPI/
 
 ```
 
-More details <a href="https://jafreitas90.medium.com/health-checks-in-kubernetes-part-1-managing-traffic-flow-with-liveness-dc44b6136081" target="_blank">here</a>
+More details:
+- Part 1: <a href="https://jafreitas90.medium.com/health-checks-in-kubernetes-part-1-managing-traffic-flow-with-liveness-dc44b6136081" target="_blank">here</a>
+- Part 2: <a href="https://jafreitas90.medium.com/health-checks-in-kubernetes-part-1-managing-traffic-flow-with-liveness-dc44b6136081" target="_blank">here</a>
+
+
+https://jafreitas90.medium.com/health-checks-in-kubernetes-part-2-managing-traffic-flow-with-readiness-ba1781069387
